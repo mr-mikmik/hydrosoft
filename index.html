@@ -181,114 +181,94 @@
   </div>
 </section> -->
 
-<!-- Model Architecture; Object, Tactile, Contact Modules -->
-<!-- <section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
+<style>
+  .content-block {
+    width: 80%;
+    margin: 0 auto; /* centers the block */
+  }
+</style>
 
-        <h2 class="title is-3" style="color: black; text-align: center;">ViTaSCOPE</h2>
-
-        <h2 class="subtitle has-text-centered" style="color: black;">
-          How do we leverage <b>complementary visuo-tactile feedback</b> to infer extrinsic contact between grasped object and the environment?
-        </h2>
-
-        <p style="color: black;">
-          <b>Object module (O)</b>: A <u>signed distance field (SDF)</u> that represents the 3D object geometry.
-        </p>
-
-
-        <p style="color: black;">
-          <b>Tactile module (T)</b>: A <u>shear vector field</u> that characterizes the extrinsic contact configuration.
-        </p>
-
-        <p style="color: black;">
-          <b>Contact module (C)</b>: A <u>contact field</u> that represents the contact probability across the object surface.
-        </p>
-
-        <div class="content has-text-centered">
-          <img src="./static/images/model_architecture.jpeg" alt="ViTaSCOPE Architecture" style="width: 80%; height: 100%;">
-        </div>
-
-        <div class="content has-text-justified">
-          <div class="content has-text-centered">
-            <h2 class="subtitle has-text-centered" style="color: black;">
-              Tactile module (T)
-            </h2>
-            <img src="./static/images/tactile_module.jpeg" alt="Tactile Module" style="width: 60%; height: 60%;">
-          </div>
-        </div>
-        <br/>
-      </div>
+  <section class="section" id="equations">
+    <h1 class="title is-3" style="color: black; text-align: center;">The Hydrosoft Model</h1>
+    <div class="content-block">
+      <p>
+        Hydrosoft extends traditional hydroelastic contact models to be non-holonomic,
+        meaning it accounts for the history of deformation. Its main features are:
+      </p>
+    
+      <ol>
+        <li>
+          <strong>Path-Dependent Force Buildup:</strong>
+          It tracks how forces accumulate incrementally as the sensor deforms, modeling the
+          “memory” of the material.
+        </li>
+    
+        <li>
+          <strong>Coulomb Friction:</strong>
+          It accurately models static and dynamic friction forces during sticking and slipping contact.
+        </li>
+    
+        <li>
+          <strong>Non-Smooth Contact Transitions:</strong>
+          It handles the making and breaking of contact smoothly.
+        </li>
+    
+        <li>
+          <strong>Differentiability:</strong>
+          The model is designed to be differentiable, enabling the use of gradient-based optimization
+          for control and planning.
+        </li>
+    
+        <li>
+          <strong>Computational Efficiency:</strong>
+          It balances physical accuracy with speed, making it suitable for real-time applications.
+        </li>
+      </ol>
     </div>
-
-
-    <!-- Scaling up Visuo-Tactile Data in Simulation -->
-    <!-- <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3" style="color: white; text-align: center;">Scaling up Visuo-Tactile Data in Simulation</h2>
-        <div class="content has-text-justified">
-          <p style="color: white;">
-            We scale up visuo-tactile robot interaction data in simulation using the penalty-based tactile model using Nvidia's TacSL framework in Isaac Gym.
-          </p>
-        </div>
-        <video id="simulation" autoplay muted loop playsinline height="100%">
-          <source src="./stati./static/videos/simulation.mp4"
-                  type="video/mp4">
-        </video>
-      </div>
-    </div> -->
-
-    <!-- Zero-shot Sim-to-Real Transfer Results -->
-    <!-- <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3" style="color: white; text-align: center;">Zero-shot Sim-to-Real Transfer Results</h2>
-        <div class="content has-text-justified">
-          <p style="color: white;">
-            We zero-shot sim-to-real transfer ViTaSCOPE to the real world and present some results below. (<span style="color: red;">predicted</span>, <span style="color: rgb(22, 56, 207);">ground truth</span>)
-          </p>
-        </div>
-        <video id="results" autoplay muted loop playsinline height="100%">
-          <source src="./stati./static/videos/real_world_results.mp4"
-                  type="video/mp4">
-        </video>
-      </div>
-    </div> -->
-
-    <!-- Simulation Results -->
-
-  <!-- <section class="section" id="sim_results">
-    <h2 class="title is-3" style="color: black; text-align: center;">Simulation Results</h2>
+    <br>
     <div class="container is-max-desktop">
-      <div class="columns is-multiline is-centered">
+      <div class="columns is-multiline is-centered is-vcentered">
         
-        <div class="column is-one-quarter has-text-centered">
+        <div class="column is-one-third has-text-centered">
           <figure class="image">
-            <img src="./static/images/gifs/planar_pushing_sim.gif" alt="GIF 1">
+            <img src="./static/images/gifs/hydro_pressing.gif" alt="GIF 1">
           </figure>
         </div>
         
-        <div class="column is-one-quarter has-text-centered">
+        <div class="column is-one-third has-text-centered">
           <figure class="image">
-            <img src="./static/images/gifs/planar_pushing_sim.gif" alt="GIF 2">
+            <img src="./static/images/gifs/hydro_shear.gif" alt="GIF 2">
           </figure>
+          <!-- <p><strong>Shear Motion:</strong> Contact forces (yellow) follow Coulumb's Friction and are within the friction cone (green)</p> -->
         </div>
         
-        <div class="column is-one-quarter has-text-centered">
+        <div class="column is-one-third has-text-centered">
           <figure class="image">
-            <img src="./static/images/gifs/rolling_sim.gif" alt="GIF 3">
-          </figure>
-        </div>
-        
-        <div class="column is-one-quarter has-text-centered">
-          <figure class="image">
-            <img src="./static/images/gifs/inhand_rotation_sim.gif" alt="GIF 4">
+            <img src="./static/images/hydro_equations.svg" alt="GIF 3">
           </figure>
         </div>
         
       </div>
+
+      <div class="columns is-multiline is-centered">
+        <div class="column is-one-third has-text-centered">
+          <p><strong>Pressing Motion: </strong> Contact forces (yellow) between the hydroelastic element (red) and the solid (blue) are proportional to penetration.</p>
+        </div>
+        <div class="column is-one-third has-text-centered">
+          <p><strong>Shear Motion:</strong> Contact forces (yellow) follow Coulumb's Friction and are within the friction cone (green)</p>
+        </div>
+        <div class="column is-one-third has-text-centered">
+          <!-- <p><strong>Pressing Motion: </strong> Contact forces (yellow) between the hydroelastic element (red) and the solid (blue) are proportional to penetration.</p> -->
+        </div>
+      </div>
+
+
     </div>
-  </section> -->
+
+
+
+
+
   <section class="section" id="sim_results">
     <h1 class="title is-3" style="color: black; text-align: center;">Simulation Results</h1>
     <h2 class="title is-4" style="color: black; text-align: center;">Planar Manipulation</h2>
