@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Hydrosoft: Non-Holonomic Hydroelastic Models for Compliant Tactile Manipulation ">
+  <meta name="keywords" content="Robotics, Visuo-tactile Sensing, Extrinsic Contact Estimation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hydrosoft: Non-Holonomic Hydroelastic Models for Compliant Tactile Manipulation</title>
+  
+  <style>
+    /* Only hide videos with the "toggle-video" class */
+    video.toggle-video {
+      width: 100%;
+      height: auto;
+      display: none;
+    }
+    .center-container {
+      width: 100%;
+      text-align: center; /* Centers inline elements within this container */
+      margin-top: 50px; /* Optional: Adds space from the top */
+    }
+    /* Optional styling for the select element */
+    .center-container select {
+      font-size: 16px;
+      padding: 8px;
+    }
+    /* Style the select element (acting as a button) */
+    #videoSelect {
+      border: 2px solid black;
+      background-color: black; /* sets the background color */
+      text-align: center;
+      color: white; /* sets the text color */
+      width: 190px;         /* adjust width as needed */
+      height: 40px;         /* adjust height as needed */
+      padding: 5px;         /* optional: adjust padding for better appearance */
+    }
+  </style>
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FGVGFCGM0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-5FGVGFCGM0');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/vitascope_favicon.png" type="image/png"> -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>📽️</text></svg>">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body style="background-color: white;">
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu" style="background-color: white;">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://mr-mikmik.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- Title, Authors, Links -->
+<section class="hero" >
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title" style="color: black;">Hydrosoft: Non-Holonomic Hydroelastic Models for Compliant Tactile Manipulation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block" style="color: black;">
+              <a href="https://mr-mikmik.github.io/">Miquel Oller</a>,</span>
+            <span class="author-block" style="color: black;">
+              <a href="https://dangthanhan507.github.io/">An Dang</a>,</span>
+            <span class="author-block" style="color: black;">
+              <a href="https://www.mmintlab.com/people/nima-fazeli/">Nima Fazeli</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block" style="color: black;">University of Michigan</span>
+            <br>
+            <!-- <span class="author-block" style="color: black;">Under Review</span> -->
+          </div>
+
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://mr-mikmik.github.io" # TODO: UPdate
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2506.12239"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/MMintLab"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/hydro_teaser.png" style="margin-bottom:30px;">
+      <h2 class="subtitle has-text-centered" style="color: black;">
+        Hydrosoft is a computationally efficient, path-dependent, and differentiable model for efficient the simulation and control of soft compliant robotic parts for dexterous manipulation tasks.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- Teaser Video and TLDR
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./stati./static/videos/hydrosoft_rw.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered" style="color: black;">
+        Hydrosoft real world experiments.
+      </h2>
+    </div>
+  </div>
+</section> -->
+
+<!-- Model Architecture; Object, Tactile, Contact Modules -->
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+
+        <h2 class="title is-3" style="color: black; text-align: center;">ViTaSCOPE</h2>
+
+        <h2 class="subtitle has-text-centered" style="color: black;">
+          How do we leverage <b>complementary visuo-tactile feedback</b> to infer extrinsic contact between grasped object and the environment?
+        </h2>
+
+        <p style="color: black;">
+          <b>Object module (O)</b>: A <u>signed distance field (SDF)</u> that represents the 3D object geometry.
+        </p>
+
+
+        <p style="color: black;">
+          <b>Tactile module (T)</b>: A <u>shear vector field</u> that characterizes the extrinsic contact configuration.
+        </p>
+
+        <p style="color: black;">
+          <b>Contact module (C)</b>: A <u>contact field</u> that represents the contact probability across the object surface.
+        </p>
+
+        <div class="content has-text-centered">
+          <img src="./static/images/model_architecture.jpeg" alt="ViTaSCOPE Architecture" style="width: 80%; height: 100%;">
+        </div>
+
+        <div class="content has-text-justified">
+          <div class="content has-text-centered">
+            <h2 class="subtitle has-text-centered" style="color: black;">
+              Tactile module (T)
+            </h2>
+            <img src="./static/images/tactile_module.jpeg" alt="Tactile Module" style="width: 60%; height: 60%;">
+          </div>
+        </div>
+        <br/>
+      </div>
+    </div>
+
+
+    <!-- Scaling up Visuo-Tactile Data in Simulation -->
+    <!-- <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="color: white; text-align: center;">Scaling up Visuo-Tactile Data in Simulation</h2>
+        <div class="content has-text-justified">
+          <p style="color: white;">
+            We scale up visuo-tactile robot interaction data in simulation using the penalty-based tactile model using Nvidia's TacSL framework in Isaac Gym.
+          </p>
+        </div>
+        <video id="simulation" autoplay muted loop playsinline height="100%">
+          <source src="./stati./static/videos/simulation.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+    </div> -->
+
+    <!-- Zero-shot Sim-to-Real Transfer Results -->
+    <!-- <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="color: white; text-align: center;">Zero-shot Sim-to-Real Transfer Results</h2>
+        <div class="content has-text-justified">
+          <p style="color: white;">
+            We zero-shot sim-to-real transfer ViTaSCOPE to the real world and present some results below. (<span style="color: red;">predicted</span>, <span style="color: rgb(22, 56, 207);">ground truth</span>)
+          </p>
+        </div>
+        <video id="results" autoplay muted loop playsinline height="100%">
+          <source src="./stati./static/videos/real_world_results.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+    </div> -->
+
+    <!-- Simulation Results -->
+
+  <!-- <section class="section" id="sim_results">
+    <h2 class="title is-3" style="color: black; text-align: center;">Simulation Results</h2>
+    <div class="container is-max-desktop">
+      <div class="columns is-multiline is-centered">
+        
+        <div class="column is-one-quarter has-text-centered">
+          <figure class="image">
+            <img src="./static/images/gifs/planar_pushing_sim.gif" alt="GIF 1">
+          </figure>
+        </div>
+        
+        <div class="column is-one-quarter has-text-centered">
+          <figure class="image">
+            <img src="./static/images/gifs/planar_pushing_sim.gif" alt="GIF 2">
+          </figure>
+        </div>
+        
+        <div class="column is-one-quarter has-text-centered">
+          <figure class="image">
+            <img src="./static/images/gifs/rolling_sim.gif" alt="GIF 3">
+          </figure>
+        </div>
+        
+        <div class="column is-one-quarter has-text-centered">
+          <figure class="image">
+            <img src="./static/images/gifs/inhand_rotation_sim.gif" alt="GIF 4">
+          </figure>
+        </div>
+        
+      </div>
+    </div>
+  </section> -->
+  <section class="section" id="sim_results">
+    <h1 class="title is-3" style="color: black; text-align: center;">Simulation Results</h1>
+    <h2 class="title is-4" style="color: black; text-align: center;">Planar Manipulation</h2>
+    <div class="container is-max-desktop">
+      <div class="columns is-multiline is-centered">
+        
+        <div class="column is-one-third has-text-centered">
+          <figure class="image">
+            <img src="./static/images/gifs/planar_pushing_sim.gif" alt="GIF 1">
+          </figure>
+          <p>Topdown Pushing</p>
+        </div>
+        
+        <div class="column is-one-third has-text-centered">
+          <figure class="image">
+            <img src="./static/images/gifs/planar_pushing_sim.gif" alt="GIF 2">
+          </figure>
+          <p>Topdown Rotation</p>
+        </div>
+        
+        <div class="column is-one-third has-text-centered">
+          <figure class="image">
+            <img src="./static/images/gifs/rolling_sim.gif" alt="GIF 3">
+          </figure>
+          <p>Rolling</p>
+        </div>
+        
+        
+      </div>
+    </div>
+    <br>
+
+    <h3 class="title is-4" style="color: black; text-align: center;">Arbitrary Geometries</h3>
+    <!-- <p style="color: black; text-align: center; font-size: 24px;"> -->
+      <!-- Hydrosoft simulation results on general shapes. -->
+    <!-- </p> -->
+
+    <div class="container is-max-desktop">
+      <div class="columns is-multiline is-centered">
+        
+        <div class="column is-one-third has-text-centered">
+          <figure class="image">
+            <img src="./static/images/gifs/rubik_cube_manipulation.gif" alt="GIF 1">
+          </figure>
+          <p>Rubik Block</p>
+        </div>
+        
+        <div class="column is-one-third has-text-centered">
+          <figure class="image">
+            <img src="./static/images/gifs/strawberry_manipulation.gif" alt="GIF 2">
+          </figure>
+          <p>Strawberry</p>
+        </div>
+        
+        <div class="column is-one-third has-text-centered">
+          <figure class="image">
+            <img src="./static/images/gifs/cow_manipulation.gif" alt="GIF 3">
+          </figure>
+          <p>Mr. Cow</p>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Teaser Video and TLDR -->
+<!-- <section class="rw inhand">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./stati./static/videos/inhand_manipulation_close_speedup.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered" style="color: black;">
+        Hydrosoft real world experiments.
+      </h2>
+    </div>
+  </div>
+</section> -->
+
+<h2 class="title is-3" style="color: black; text-align: center;">Real World Experiments</h2>
+
+
+<section class="section" id="video-grid">
+  <h2 class="title is-4" style="color: black; text-align: center;">In-hand Rotation Objects</h2>
+  <div class="container is-max-desktop">
+    <div class="columns is-multiline is-centered">
+
+      <!-- Row 1, Column 1 -->
+      <div class="column is-one-third has-text-centered">
+        <video autoplay muted loop playsinline class="grid-video">
+          <source src="./static/videos/inhand_manipulation_rubik_close.mp4" type="video/mp4">
+        </video>
+        <p>Rubik Block</p>
+      </div>
+
+      <!-- Row 1, Column 2 -->
+      <div class="column is-one-third has-text-centered">
+        <video autoplay muted loop playsinline class="grid-video">
+          <source src="./static/videos/inhand_manipulation_strawberry_close.mp4" type="video/mp4">
+        </video>
+        <p>Strawberry</p>
+      </div>
+
+      <!-- Row 1, Column 3 -->
+      <div class="column is-one-third has-text-centered">
+        <video autoplay muted loop playsinline class="grid-video">
+          <source src="./static/videos/inhand_manipulation_corn_close.mp4" type="video/mp4">
+        </video>
+        <p>Corn</p>
+      </div>
+
+      <!-- Row 2, Column 1 -->
+      <div class="column is-one-third has-text-centered">
+        <video autoplay muted loop playsinline class="grid-video">
+          <source src="./static/videos/inhand_manipulation_lettuce_close.mp4" type="video/mp4">
+        </video>
+        <p>Cabbage</p>
+      </div>
+
+      <!-- Row 2, Column 2 -->
+      <div class="column is-one-third has-text-centered">
+        <video autoplay muted loop playsinline class="grid-video">
+          <source src="./static/videos/inhand_manipulation_lightbulb_close.mp4" type="video/mp4">
+        </video>
+        <p>Light Bulb</p>
+      </div>
+
+      <!-- Row 2, Column 3 -->
+      <div class="column is-one-third has-text-centered">
+        <video autoplay muted loop playsinline class="grid-video">
+          <source src="./static/videos/inhand_manipulation_spray_close.mp4" type="video/mp4">
+        </video>
+        <p>Spray Bottle</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Acknowledgement -->
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="color: white; text-align: center;">Acknowledgement</h2>
+        <p style="color: white;">
+          The authors would like to thank Andrea Sipos for manufacturing the Gelslim 4.0 vision-based tactile sensors for the Franka Emika Panda robot arm. 
+          We also thank William van den Bogert for his help with tracking marker displacements from Gelslim 4.0 to extract shear observations. 
+          We are grateful to Mark van der Merwe, Youngsun Wi, Miquel Oller, and Samanta Rodriguez for helpful discussions and important feedbacks.
+          Finally, we would like to thank the authors of the TacSL paper [1] and NVIDIA for open-sourcing the framework and Isaac Gym for simulation.
+        </p>
+        <br/>
+        <p style="color: white;">
+          [1] TacSL: A Library for Visuotactile Sensor Simulation and Learning
+        </p>
+        <p style="color: white;">
+        </p>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- Authors -->
+<section class="section" id="team">
+  <div class="container is-max-desktop content">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="color: black; text-align: center;">Team</h2>
+
+        <div class="container has-text-centered">
+          <div class="publication-authors is-flex justify-content is-justify-content-space-around is-hidden-mobile">
+            <div class="author-block has-text-centered has-addons-centered">
+              <figure class="image" style="max-width:200px; width: 20vw;">
+                <a href="https://jayjunlee.github.io/">
+                  <img class="is-rounded" src="./static/images/mik.jpg" alt="Miquel Oller">
+                </a>
+              </figure>
+              <a href="https://mr-mikmik.github.io/">Miquel Oller</a>
+            </div>
+            <div class="author-block has-text-centered has-addons-centered">
+              <figure class="image" style="max-width:200px; width: 20vw;">
+                <a href="https://dangthanhan507.github.io/">
+                  <img class="is-rounded" src="./static/images/an.png" alt="An Dang">
+                </a>
+              </figure>
+              <a href="https://dangthanhan507.github.io/">An Dang</a>
+            </div>
+
+            <div class="author-block has-text-centered has-addons-centered">
+              <figure class="image" style="max-width:200px; width: 20vw;">
+                <a href="https://www.mmintlab.com/people/nima-fazeli/">
+                  <img class="is-rounded
+                          " src="./static/images/nima.png" alt="Nima Fazeli">
+                </a>
+              </figure>
+              <a href="https://www.mmintlab.com/people/nima-fazeli/">Nima Fazeli</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title" style="color: black; text-align: center;">BibTeX</h2>
+    <pre class="is-hidden-mobile" style="background-color: lightgray; color: black; border: 2px solid gray;"><code>
+      @inproceedings{hydrosoft2025,
+        title={Hydrosoft: Non-Holonomic Hydroelastic Models for Compliant Tactile Manipulation},
+        author={Miquel Oller, An Dang, and Nima Fazeli},
+        booktitle={Under Review},
+        year={2025}
+      }
+    </code>
+    </pre>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer" style="background-color: darkgray;">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/MMintLab/hydrosoft" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website template modified from <a href="https://nerfies.github.io/">NeRFies</a>.
+          </p>
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
